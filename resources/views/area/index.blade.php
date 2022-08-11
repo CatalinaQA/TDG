@@ -55,7 +55,7 @@
                                     @foreach ($areas as $area)
                                         <tr>
                                             <td>{{ $area->faculty->faculty_name }}</td>
-											<td>{{ $area->coordination->coordination_name }}</td>
+
 											<td>{{ $area->program->program_name }}</td>
 											<td>{{ $area->area_name }}</td>
 											<td>{{ $area->user->name }}</td>

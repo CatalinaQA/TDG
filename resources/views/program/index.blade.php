@@ -55,7 +55,7 @@
                                     @foreach ($programs as $program)
                                         <tr>
                                             <td>{{ $program->faculty->faculty_name }}</td>
-											<td>{{ $program->coordination->coordination_name }}</td>
+
 											<td>{{ $program->program_name }}</td>
 											<td>{{ $program->program_category }}</td>
 											<td>{{ $program->snies_register }}</td>
