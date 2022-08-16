@@ -79,7 +79,7 @@ class ScheduleController extends Controller
             ->paginate(10)
             ->appends($request->all());
 
-        
+
 
         return view('schedule.index', [
             'schedules' => $schedules,
@@ -182,7 +182,7 @@ class ScheduleController extends Controller
         $input['start_minute'] = $startHours[1];
         $input['end_hour']     = $endHours[0];
         $input['end_minute']   = $endHours[1];
-        
+
         // Calculate theory_hours
         $start_hour           = (int)$input['start_hour'] + (int)$input['start_minute']/60;
         $end_hour             = (int)$input['end_hour'] + (int)$input['end_minute']/60;

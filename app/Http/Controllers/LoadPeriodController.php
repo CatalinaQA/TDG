@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\LoadPeriod;
+use App\Models\Schedule;
+use App\Imports\LoadPeriodsImport;
 use Illuminate\Http\Request;
 
 /**
@@ -46,8 +48,16 @@ class LoadPeriodController extends Controller
         request()->validate(LoadPeriod::$rules);
 
         $loadPeriod = LoadPeriod::create($request->all());
+        /*
+        import cvs file and make it into an array then load into schedule model
+        $csv = array_map('str_getcsv', file(request()->file('file')));
+
+
+
+        */
 
         return redirect()->route('load-periods.index')
             ->with('success', 'LoadPeriod created successfully.');
+
     }
 }
