@@ -30,7 +30,7 @@ class FacultyController extends Controller
         return view('faculty.index', [
             'faculties' => $faculties,
             'request' => [
-                'faculty_name' => $facultyName, 
+                'faculty_name' => $facultyName,
                 'dean_name'    => $deanName
             ]
         ]);
@@ -89,8 +89,11 @@ class FacultyController extends Controller
     public function edit($id)
     {
         $faculty = Faculty::find($id);
-
-        return view('faculty.edit', compact('faculty'));
+        $deans   = User::where('role', 'decano')->pluck('name', 'id');
+        return view('faculty.edit', [
+            'faculty' => $faculty,
+            'deans'   => $deans
+        ]);
     }
 
     /**

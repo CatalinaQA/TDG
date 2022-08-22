@@ -23,7 +23,7 @@ class CoordinationController extends Controller
      */
     public function index(Request $request)
     {
-        
+
 
         $facultyId        = $request->get('faculty_id');
         $coordinationName = $request->get('coordination_name');
@@ -39,7 +39,7 @@ class CoordinationController extends Controller
             'coordinations' => $coordinations,
             'faculties'     => $faculties,
             'request'       => [
-                'faculty_id'         => $facultyId, 
+                'faculty_id'         => $facultyId,
                 'coordination_name'  => $coordinationName
             ]
         ]);
@@ -74,7 +74,7 @@ class CoordinationController extends Controller
         $messages = [
             'faculty_id.unique' => 'Facultad y Coordinación no son únicos',
         ];
-        
+
         $validator = Validator::make($request->all(), [
             'faculty_id' => [
                 'required',
@@ -124,10 +124,12 @@ class CoordinationController extends Controller
     {
         $coordination = Coordination::find($id);
         $faculties    = Faculty::pluck('faculty_name', 'id');
+        $coordinators  = User::where('role', 'coordinador área')->pluck('name', 'id');
 
         return view('coordination.edit', [
             'coordination' => $coordination,
             'faculties'    => $faculties,
+            'coordinators'  => $coordinators,
         ]);
     }
 
@@ -143,7 +145,7 @@ class CoordinationController extends Controller
         $messages = [
             'faculty_id.unique' => 'Facultad y Coordinación no son únicos',
         ];
-        
+
         $validator = Validator::make($request->all(), [
             'faculty_id' => [
                 'required',
