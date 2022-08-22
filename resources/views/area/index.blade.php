@@ -41,7 +41,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>Nombre facultad</th>
-										<th>Nombre coordinación</th>
+
 										<th>Nombre programa</th>
 										<th>Nombre área</th>
 										<th>Nombre coordinador</th>
