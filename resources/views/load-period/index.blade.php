@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>#</th>
-                                        
+
 										<th>Usuario</th>
 										<th>Nombre archivo</th>
 										<th>Periodo</th>
@@ -46,7 +46,7 @@
                                     @foreach ($loadPeriods as $loadPeriod)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $loadPeriod->user->name }}</td>
 											<td>{{ $loadPeriod->file_name }}</td>
 											<td>{{ $loadPeriod->period }}</td>
@@ -74,7 +74,9 @@
                     <form action="import" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="file" name="file" class="form-control">
+                            <input type="file" name="file" class="form-control" accept=".csv" required
+                            oninvalid="this.setCustomValidity('por favor seleccione archivo')"
+                            oninput="this.setCustomValidity('')">
                             <button class="btn btn-primary" type="submit">Enviar</button>
                         </div>
                     </form>
