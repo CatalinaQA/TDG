@@ -3,11 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Teacher;
+use App\Models\User;
 use App\Models\Subject;
 use App\Models\Schedule;
 use App\Models\LoadPeriod;
+use App\Mail\notifMail;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
@@ -35,6 +38,9 @@ class LoadPeriodsImport implements ToModel, WithStartRow, WithCustomCsvSettings
         $month        = date('m');
         $semester     = (int)floor(($month-1)/6)+1;
         $this->period = date('Y') . '-' . $semester;
+
+        $email = Auth::user()->email;
+        Mail::to($email)->send(new notifMail());
 
         $this->load_period = LoadPeriod::create([
             'user_id'   => Auth::id(),
@@ -70,9 +76,9 @@ class LoadPeriodsImport implements ToModel, WithStartRow, WithCustomCsvSettings
             return new Schedule([
                 'subject_id'          => $subject->id,
                 'program_id'          => $subject->program_id,
+                'teacher'             => $row[12],
                 'area_id'             => $subject->area_id,
                 'campus'              => $row[0],
-                'teacher'              => $row[12],
                 'group'               => $row[2],
                 'detail'              => $row[5],
                 'day'                 => $row[7],

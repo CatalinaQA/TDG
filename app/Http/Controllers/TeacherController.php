@@ -87,7 +87,7 @@ class TeacherController extends Controller
                     $totalHoursE = 0;
                     foreach ($schedules as $key => $schedule) {
                         switch ($schedule['activity']) {
-                            case 'TEORICA':
+                            case 'TE?RICA':
                                 $totalHoursT = $totalHoursT + $schedule['total_hours'];
                                 break;
                             case 'PRACTICA':
